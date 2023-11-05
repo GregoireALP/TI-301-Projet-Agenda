@@ -3,14 +3,24 @@
 
 int main() {
 
-    int value = 10;
-    int level = 3;
+    /**********************************************************************************/
+    /*                               CELLS DEMOS                                      */
+    /**********************************************************************************/
 
-    t_d_cell *cell = create_cell(value, level);
-    display_cell(cell);
+    int myCellValue = 5;
+    int myCellLevel = 3;
+    t_d_cell* myCell = create_cell(myCellValue, myCellLevel);
+    //display_cell(myCell);
 
-    t_d_list *list = create_list(4);
-    display_list(list);
+
+    /**********************************************************************************/
+    /*                               LISTS DEMOS                                      */
+    /**********************************************************************************/
+
+    // Empty List Demo
+    int myEmptyListLevel = 5;
+    t_d_list* myEmptyList = create_list(myEmptyListLevel);
+    //display_list(myEmptyList);
 
     return 0;
 }
