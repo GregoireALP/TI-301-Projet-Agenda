@@ -29,3 +29,5 @@ t_d_cell* create_cell(int, int);
 
 void display_cell(t_d_cell*);
 void display_list(t_d_list*);
+
+void insert_cell(t_d_cell*, t_d_list*);

@@ -53,6 +53,7 @@ t_d_list *create_list(int max_level) {
 }
 
 void display_list(t_d_list* list) {
+    
     // Pour chaque niveaux
     for(int i = 0; i < list->max_level; i++) {
 
@@ -68,5 +69,13 @@ void display_list(t_d_list* list) {
 
         printf("NULL\n");
     }
+
+}
+
+    /**********************************************************************************/
+    /*                                 ACTIONS                                        */
+    /**********************************************************************************/
+
+void insert_cell(t_d_cell* cell, t_d_list* list) {
 
 }
