@@ -55,7 +55,7 @@ void display_list(t_d_list* list) {
 
     for(int i = 0; i < list->max_level; i++) {
 
-        printf("[head_%d -@]-->", i);
+        printf("[list head_%d @-]-->", i);
         t_d_cell *tmp = list->heads[i];
 
         while(tmp != NULL) {
