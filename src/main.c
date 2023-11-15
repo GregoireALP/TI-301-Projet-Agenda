@@ -14,6 +14,9 @@ char *menu = "    _                        _       \n"
 
 int main() {
 
+
+
+
     /**********************************************************************************/
     /*                               PARTIE 1                                         */
     /**********************************************************************************/
@@ -44,9 +47,16 @@ int main() {
     //display_list(my_list);
 
 
+
+
+
+
+
+
     /**********************************************************************************/
     /*                               PARTIE 2                                         */
     /**********************************************************************************/
+
 
     /********************************CELLS DEMOS***************************************/
 
@@ -63,19 +73,18 @@ int main() {
     /********************************CLASSIC SEARCH DEMOS******************************/
 
     t_d_list * my_classical_test_list = create_list(1);
-    int* values_for_1000 = (int*)malloc(1000*sizeof(int));
-    int* values_for_10000 = (int*)malloc(10000*sizeof(int));
-    int* values_for_100000 = (int*)malloc(10000*sizeof(int));
 
-    for(int i = 0; i < 1000; i++) {
+    for(int i = 100000; i > 0; i--) {
         insert_cell(i, 1, my_classical_test_list);
     }
 
     startTimer();
 
-    t_d_cell * my_classical_test_cell = search_cell_classic(999, my_classical_test_list);
+    t_d_cell * my_classical_test_cell = search_cell_classic(99999, my_classical_test_list);
 
     stopTimer();
+    printf("%p", my_classical_test_cell);
+
     displayTime();
 
 
