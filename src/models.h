@@ -12,6 +12,17 @@ typedef struct s_contact
 
 } t_contact;
 
+typedef struct s_apointement
+{
+    char* object;
+    int date_hour;
+    int date_minute;
+    int date_day;
+    int date_month;
+    int date_year;
+
+} t_apointement;
+
 
 
 #endif //TI_301_PROJET_AGENDA_MODELS_H

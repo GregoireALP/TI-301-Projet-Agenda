@@ -80,27 +80,20 @@ void insert_cell(int value , int level, t_d_list* list) {
 
     t_d_cell *cell = create_cell(value, level);
 
-    // For each level of the list
     for(int i = 0; i < level; i++) {
 
-        // If the list is empty
         if(list->heads[i] == NULL) {
 
-            // Insert the cell at the beginning of the list
             list->heads[i] = cell;
 
         } else {
 
-            // If the cell have to be insert at the beginning of the list
             if(list->heads[i]->value > value) {
 
-                // Insert the cell at the beginning of the list
                 cell->next[i] = list->heads[i];
                 list->heads[i] = cell;
 
             } else {
-
-                // If the cell have to be insert in the middle of the list
                 t_d_cell *tmp = list->heads[i];
 
                 while(tmp->next[i] != NULL && tmp->next[i]->value < value) {
@@ -109,7 +102,6 @@ void insert_cell(int value , int level, t_d_list* list) {
 
                 }
 
-                // Insert the cell in the middle of the list
                 cell->next[i] = tmp->next[i];
                 tmp->next[i] = cell;
 
@@ -120,4 +112,46 @@ void insert_cell(int value , int level, t_d_list* list) {
     }
 
     return;
+}
+
+/**********************************************************************************/
+/*                                 SEARCHS                                        */
+/**********************************************************************************/
+
+
+t_d_cell* search_cell_classic(int value, t_d_list* list) {
+
+    t_d_cell *tmp = list->heads[0];
+
+    while(tmp != NULL && tmp->value < value) {
+        tmp = tmp->next[0];
+    }
+
+    if(tmp != NULL && tmp->value == value) {
+        return tmp;
+
+    } else {
+        return NULL;
+
+    }
+}
+
+t_d_cell* search_cell_optimal(int value, t_d_list* list) {
+
+    t_d_cell *tmp = list->heads[list->max_level - 1];
+
+    for(int i = list->max_level - 1; i >= 0; i--) {
+        while(tmp != NULL && tmp->value < value) {
+
+            tmp = tmp->next[i];
+        }
+
+        if(tmp != NULL && tmp->value == value) {
+            return tmp;
+
+        }
+
+        tmp = list->heads[i];
+
+    }
 }
