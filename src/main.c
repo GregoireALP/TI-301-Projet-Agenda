@@ -3,7 +3,10 @@
 #include <malloc.h>
 
 #include "fichier.h"
+#include "models.h"
 #include "timer.h"
+#include "menus.h"
+#include "app.h"
 
 char *menu = "    _                        _       \n"
              "   / \\   __ _  ___ _ __   __| | __ _ \n"
@@ -13,8 +16,6 @@ char *menu = "    _                        _       \n"
              "        |___/";
 
 int main() {
-
-
 
 
     /**********************************************************************************/
@@ -74,19 +75,84 @@ int main() {
 
     t_d_list * my_classical_test_list = create_list(1);
 
-    for(int i = 100000; i > 0; i--) {
+    for(int i = 1; i > 0; i--) {
         insert_cell(i, 1, my_classical_test_list);
     }
 
-    startTimer();
+    // startTimer();
 
     t_d_cell * my_classical_test_cell = search_cell_classic(99999, my_classical_test_list);
 
-    stopTimer();
-    printf("%p", my_classical_test_cell);
+    // stopTimer();
+    // printf("%d", my_classical_test_cell->value);
 
-    displayTime();
+    //displayTime();
 
+
+
+
+
+    /**********************************************************************************/
+    /*                               APPLICATION                                      */
+    /**********************************************************************************/
+
+    t_input_list* MAIN_LIST = create_input_list(4);
+    int app_state = 1;
+
+    while (app_state == 1) {
+
+            scanf("");
+
+            printf("%s\n", menu);
+            printf("1. Ajouter un contact\n");
+            printf("2. Chercher un contact\n");
+            printf("3. Afficher les contacts\n");
+            printf("4. Ajouter un rendez-vous\n");
+            printf("5. Affichez les rendez vous\n");
+            printf("6. Quitter\n");
+
+            int choice = 0;
+            scanf("%d", &choice);
+
+            switch (choice) {
+
+                case 1: {
+                    menu_add_contact(MAIN_LIST);
+                    break;
+                }
+
+                case 2: {
+                    menu_find_contact(MAIN_LIST);
+                    break;
+                }
+
+                case 3: {
+                    menu_display_all_contacts(MAIN_LIST);
+                    break;
+                }
+
+                case 4 : {
+                    menu_add_appointment(MAIN_LIST);
+                    break;
+                }
+
+                case 5: {
+                    menu_display_appointment(MAIN_LIST);
+                    break;
+                }
+
+                case 6: {
+                    app_state = 0;
+                    break;
+                }
+
+                default: {
+
+                    printf("Choix invalide\n");
+                    break;
+                }
+            }
+    }
 
     return 0;
 }

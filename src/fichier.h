@@ -5,8 +5,6 @@
 #ifndef TI_301_PROJET_AGENDA_FICHIER_H
 #define TI_301_PROJET_AGENDA_FICHIER_H
 
-#endif //TI_301_PROJET_AGENDA_FICHIER_H
-
 
 typedef struct s_d_cell
 {
@@ -20,7 +18,7 @@ typedef struct s_d_list
 {
 
     int max_level;
-    struct s_d_cell **heads;
+    t_d_cell **heads;
 
 } t_d_list;
 
@@ -34,3 +32,4 @@ void insert_cell(int, int, t_d_list*);
 t_d_cell* search_cell_classic(int value, t_d_list* list);
 t_d_cell* search_cell_optimal(int value, t_d_list* list);
 
+#endif //TI_301_PROJET_AGENDA_FICHIER_H

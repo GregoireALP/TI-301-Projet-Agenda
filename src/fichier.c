@@ -2,10 +2,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "fichier.h"
+
 /**********************************************************************************/
 /*                                 CELL                                           */
 /**********************************************************************************/
 
+/**
+ * @param value
+ * @param level
+ * @return
+ */
 t_d_cell *create_cell(int value, int level) {
 
     t_d_cell *cell = (t_d_cell*) malloc(sizeof(t_d_cell));
@@ -21,6 +28,9 @@ t_d_cell *create_cell(int value, int level) {
     return cell;
 }
 
+/**
+ * @param cell
+ */
 void display_cell(t_d_cell* cell) {
 
     for(int i = 0; i < cell->level; i++) {
@@ -34,7 +44,10 @@ void display_cell(t_d_cell* cell) {
 /*                                 LIST                                           */
 /**********************************************************************************/
 
-
+/**
+ * @param max_level
+ * @return
+ */
 t_d_list *create_list(int max_level) {
 
         t_d_list *list = (t_d_list*) malloc(sizeof(t_d_list));
@@ -51,6 +64,9 @@ t_d_list *create_list(int max_level) {
         return list;
 }
 
+/**
+ * @param list
+ */
 void display_list(t_d_list* list) {
 
     for(int i = 0; i < list->max_level; i++) {
@@ -58,11 +74,11 @@ void display_list(t_d_list* list) {
         printf("[list head_%d @-]-->", i);
         t_d_cell *tmp = list->heads[i];
 
+
         while(tmp != NULL) {
 
             printf("[ %d|@ ]-->", tmp->value);
             tmp = tmp->next[i];
-
         }
 
         printf("NULL\n");
@@ -75,7 +91,11 @@ void display_list(t_d_list* list) {
     /*                                 ACTIONS                                        */
     /**********************************************************************************/
 
-
+/**
+ * @param value
+ * @param level
+ * @param list
+ */
 void insert_cell(int value , int level, t_d_list* list) {
 
     t_d_cell *cell = create_cell(value, level);
@@ -118,7 +138,11 @@ void insert_cell(int value , int level, t_d_list* list) {
 /*                                 SEARCHS                                        */
 /**********************************************************************************/
 
-
+/**
+ * @param value
+ * @param list
+ * @return
+ */
 t_d_cell* search_cell_classic(int value, t_d_list* list) {
 
     t_d_cell *tmp = list->heads[0];
@@ -136,6 +160,11 @@ t_d_cell* search_cell_classic(int value, t_d_list* list) {
     }
 }
 
+/**
+ * @param value
+ * @param list
+ * @return
+ */
 t_d_cell* search_cell_optimal(int value, t_d_list* list) {
 
     t_d_cell *tmp = list->heads[list->max_level - 1];
