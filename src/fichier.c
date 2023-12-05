@@ -71,17 +71,28 @@ void display_list(t_d_list* list) {
 
     for(int i = 0; i < list->max_level; i++) {
 
-        printf("[list head_%d @-]-->", i);
+        printf("[list head_%d @-]--", i);
         t_d_cell *tmp = list->heads[i];
+        t_d_cell *cursor = list->heads[0];
 
 
-        while(tmp != NULL) {
+        while(cursor != NULL) {
+            if(tmp == NULL) {
+                printf("----------");
+                cursor = cursor->next[0];
+                continue;
+            }
+            if(cursor->value == tmp->value) {
+                printf(">[ %d|@ ]--", tmp->value);
+                tmp = tmp->next[i];
 
-            printf("[ %d|@ ]-->", tmp->value);
-            tmp = tmp->next[i];
+            } else {
+                printf("----------");
+            }
+            cursor = cursor->next[0];
         }
 
-        printf("NULL\n");
+        printf(">NULL\n");
 
     }
 
@@ -183,4 +194,6 @@ t_d_cell* search_cell_optimal(int value, t_d_list* list) {
         tmp = list->heads[i];
 
     }
+
+    return NULL;
 }
