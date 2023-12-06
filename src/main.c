@@ -8,7 +8,6 @@
 #include "models.h"
 #include "timer.h"
 #include "menus.h"
-#include "app.h"
 
 char *menu = "    _                        _       \n"
              "   / \\   __ _  ___ _ __   __| | __ _ \n"
@@ -89,7 +88,11 @@ int main() {
     /********************************SEARCH DEMOS******************************/
 
 
+    /**
     int n = 13;
+    // MAX = 8192
+    int value_to_search = 4096;
+
     t_d_list* my_list_2 = create_list(n);
 
     int* levels = calloc(pow(2, n) - 1, sizeof(int));
@@ -109,10 +112,11 @@ int main() {
         insert_cell(i, levels[i] + 1, my_list_2);
     }
 
-    // MAX = 8192
-    int value_to_search = 4539;
 
-    //************CLASSIC SEARCH************//
+     */
+    /************CLASSIC SEARCH************/
+
+    /**
     startTimer();
     t_d_cell* cell_to_search = search_cell_classic(value_to_search, my_list_2);
     if(cell_to_search != NULL) {
@@ -123,8 +127,10 @@ int main() {
     stopTimer();
     displayTime();
     printf("\n");
+     */
 
-    //************OPTIMAL SEARCH************//
+    /************OPTIMAL SEARCH************/
+    /*
     startTimer();
     t_d_cell* cell_to_search_2 = search_cell_optimal(value_to_search, my_list_2);
     if(cell_to_search_2 != NULL) {
@@ -135,7 +141,7 @@ int main() {
     stopTimer();
     displayTime();
     printf("\n");
-
+     */
 
 
     /**********************************************************************************/
@@ -143,8 +149,9 @@ int main() {
     /**********************************************************************************/
 
     t_input_list* MAIN_LIST = create_input_list(4);
-    int app_state = 0;
+    int app_state = 1;
 
+    /*
     // read the text file in ../libs/data/noms2008nat_txt.txt in wich each line is a lastName, take 1000 lastName randomly and add them to the list
     FILE *file = fopen("../libs/data/noms2008nat_txt.txt", "r");
     char line[256];
@@ -162,6 +169,7 @@ int main() {
     }
 
     fclose(file);
+     */
 
 
     while (app_state == 1) {
@@ -175,7 +183,8 @@ int main() {
             printf("3. Afficher les contacts\n");
             printf("4. Ajouter un rendez-vous\n");
             printf("5. Affichez les rendez vous\n");
-            printf("6. Quitter\n");
+            printf("6. Extraire les rendez vous\n");
+            printf("7. Quitter\n");
 
             int choice = 0;
             scanf("%d", &choice);
@@ -208,6 +217,11 @@ int main() {
                 }
 
                 case 6: {
+                    extract_appointments(MAIN_LIST);
+                    break;
+                }
+
+                case 7: {
                     app_state = 0;
                     break;
                 }

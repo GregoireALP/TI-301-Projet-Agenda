@@ -10,7 +10,7 @@
 void menu_display_contact(t_contact* contact) {
 
     printf("Nom : %s\n", contact->last_name);
-    printf("Prénom : %s\n", contact->first_name);
+    printf("Prenom : %s\n", contact->first_name);
 
     return;
 }
@@ -76,12 +76,16 @@ void menu_add_appointment(t_input_list* input_list) {
         printf("Le contact n'existe pas, voulez vous le creer (0 = NON ; 1 = OUI)\n");
         int choice;
         scanf("%d", &choice);
+
         if((int) choice  == 1) {
             menu_add_contact(input_list);
         } else {
             return;
         }
     }
+
+
+    input = find_contact(last_name, input_list);
 
     printf("Entrer l'objet du rendez-vous : ");
     char* object = scan_string();
@@ -177,4 +181,37 @@ int get_number_of_contacts(t_input_list* input_list) {
         }
 
         return number_of_contacts;
+}
+
+void extract_appointments(t_input_list* input_list) {
+
+    // Create a text file and write all appointments in it
+    FILE* file = fopen("appointments.txt", "w");
+
+    t_input* tmp = input_list->heads[0];
+
+    while(tmp != NULL) {
+
+        t_appointment* appointment = tmp->appointments;
+
+        while(appointment != NULL) {
+
+            fprintf(file, "%s\n", tmp->contact->last_name);
+            fprintf(file, "%s\n", tmp->contact->first_name);
+            fprintf(file, "%s\n", appointment->object);
+            fprintf(file, "%d\n", appointment->date_hour);
+            fprintf(file, "%d\n", appointment->date_minute);
+            fprintf(file, "%d\n", appointment->date_day);
+            fprintf(file, "%d\n", appointment->date_month);
+            fprintf(file, "%d\n", appointment->date_year);
+
+            appointment = appointment->next;
+        }
+
+        tmp = tmp->next;
+    }
+
+    fclose(file);
+
+    return;
 }

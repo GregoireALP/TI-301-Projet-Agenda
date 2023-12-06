@@ -75,6 +75,7 @@ void display_list(t_d_list* list) {
         t_d_cell *tmp = list->heads[i];
         t_d_cell *cursor = list->heads[0];
 
+        // Cursor compare les valeurs de la liste au niveau 0 avec le niveau i
 
         while(cursor != NULL) {
             if(tmp == NULL) {
